@@ -101,20 +101,14 @@ export const sm4 = {
       throw new Error('Message must be multipler of 128 bits');
     }
 
-    const encrypted = SmCrypto.sm4.encrypt(
-      wordArrayToArray(srcBuffer),
-      wordArrayToArray(keyBuffer),
-      Object.assign(
-        {
-          mode: getMode(mode),
-          padding: mode.toLowerCase() !== 'gcm' ? getPad(pad) : 'none',
-          output: 'array',
-        },
-        ivBuffer !== undefined ? { iv: wordArrayToArray(ivBuffer) } : {},
-        mode.toLowerCase() === 'gcm' && aadBuffer ? { associatedData: wordArrayToArray(aadBuffer) } : {},
-        mode.toLowerCase() === 'gcm' ? { outputTag: true } : {},
-      ) as any,
-    );
+    const encrypted = SmCrypto.sm4.encrypt(wordArrayToArray(srcBuffer), wordArrayToArray(keyBuffer), {
+      mode: getMode(mode),
+      padding: mode.toLowerCase() !== 'gcm' ? getPad(pad) : 'none',
+      output: 'array',
+      ...(ivBuffer !== undefined ? { iv: wordArrayToArray(ivBuffer) } : {}),
+      ...(mode.toLowerCase() === 'gcm' && aadBuffer ? { associatedData: wordArrayToArray(aadBuffer) } : {}),
+      ...(mode.toLowerCase() === 'gcm' ? { outputTag: true } : {}),
+    } as any);
 
     if (mode.toLowerCase() === 'gcm') {
       const gcmResult = encrypted as IGCMResult;
@@ -183,20 +177,14 @@ export const sm4 = {
     if (keyBuffer.sigBytes !== 16) throw new Error('Key must be 128 bytes');
     if (mode !== 'ecb' && ivBuffer!.sigBytes !== 16) throw new Error('IV must be 128 bytes');
 
-    const decrypted = SmCrypto.sm4.decrypt(
-      wordArrayToArray(srcBuffer),
-      wordArrayToArray(keyBuffer),
-      Object.assign(
-        {
-          mode: getMode(mode),
-          padding: mode.toLowerCase() !== 'gcm' ? getPad(pad) : 'none',
-          output: 'array',
-        },
-        ivBuffer !== undefined ? { iv: wordArrayToArray(ivBuffer) } : {},
-        mode.toLowerCase() === 'gcm' && aadBuffer ? { associatedData: wordArrayToArray(aadBuffer) } : {},
-        mode.toLowerCase() === 'gcm' && tagBuffer ? { tag: wordArrayToArray(tagBuffer) } : {},
-      ) as any,
-    );
+    const decrypted = SmCrypto.sm4.decrypt(wordArrayToArray(srcBuffer), wordArrayToArray(keyBuffer), {
+      mode: getMode(mode),
+      padding: mode.toLowerCase() !== 'gcm' ? getPad(pad) : 'none',
+      output: 'array',
+      ...(ivBuffer !== undefined ? { iv: wordArrayToArray(ivBuffer) } : {}),
+      ...(mode.toLowerCase() === 'gcm' && aadBuffer ? { associatedData: wordArrayToArray(aadBuffer) } : {}),
+      ...(mode.toLowerCase() === 'gcm' && tagBuffer ? { tag: wordArrayToArray(tagBuffer) } : {}),
+    } as any);
 
     return wordStringify[outputEncode](arrayToWordArray(decrypted as unknown as Uint8Array));
   },

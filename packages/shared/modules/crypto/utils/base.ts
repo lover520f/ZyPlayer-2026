@@ -82,7 +82,7 @@ export const hexToArray = (hex: string): Uint8Array => {
  * @param {Uint8Array} arr - The Uint8Array to convert.
  * @returns {string} The hex string representation of the Uint8Array.
  */
-export const arrayToHex = (arr: Uint8Array): string => [...arr].map((b) => b.toString(16).padStart(2, '0')).join('');
+export const arrayToHex = (arr: Uint8Array): string => Array.from(arr, (b) => b.toString(16).padStart(2, '0')).join('');
 
 /**
  * Checks if a string is Latin-1 encoded.

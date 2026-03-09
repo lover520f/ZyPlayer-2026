@@ -61,7 +61,7 @@ import { computed, ref, useAttrs, watch } from 'vue';
 import ActionSectionView from './components/ActionSection.vue';
 import { parseActionButton } from './utils';
 
-const attrs: Partial<DialogProps> = useAttrs();
+const attrs = useAttrs() as DialogProps;
 
 const dialogRef = ref<InstanceType<typeof Dialog>>();
 const actionRef = ref<InstanceType<typeof ActionSectionView>>();

@@ -254,7 +254,7 @@ import {
 } from 'tdesign-icons-vue-next';
 import { MessagePlugin } from 'tdesign-vue-next';
 import type { PropType } from 'vue';
-import { computed, onMounted, ref, watch } from 'vue';
+import { computed, onMounted, ref, toRaw, watch } from 'vue';
 
 import {
   fetchCmsDetail,
@@ -690,7 +690,7 @@ const handleSwitchRecommendItem = async (item: IRecMatch) => {
   videoData.value = { url: '', playEnd: false, watchTime: 0, duration: 0, skipTimeInStart: 30, skipTimeInEnd: 30 };
 
   await emits('update', {
-    data: Object.assign({}, { info, extra: extraConf.value }),
+    data: toRaw({ info, extra: extraConf.value }),
   });
   setup();
 };

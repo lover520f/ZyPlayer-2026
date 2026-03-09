@@ -122,7 +122,7 @@ const POPUP_CONTENT_ROUTES = Object.keys(RELATE_MAP).filter((name) => !['Live'].
 const MAX_HISTORY_SIZE = 10;
 const MAX_HOT_ITEMS = 10;
 const MAX_RETRY_COUNT = 3;
-const SKELETON_CONFIG = [...Array.from({ length: 4 })].map(() => ({
+const SKELETON_CONFIG = Array.from(Array.from({ length: 4 }), () => ({
   type: 'text',
   width: '100%',
   height: '22px',
