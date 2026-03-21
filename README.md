@@ -228,7 +228,7 @@ sudo yum install xdg-utils
       "updatedAt": 1768310498000 // <3.4.1 启用> 更新时间戳(ms)
     }
   ],
-  "sites": [
+  "site": [
     {
       "id": "fddfb425-6fd9-0b39-459f-a21f69739a6e", // 数据唯一uuidv4标识(不可重复)
       "key": "51793af6-c923-5504-85db-0ef686624dec", // <3.4.0 启用> 业务唯一标识(不可重复)
