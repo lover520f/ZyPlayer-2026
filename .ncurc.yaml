@@ -32,6 +32,7 @@ reject:
   - monaco-editor
   - npminstall
   - pnpm
+  - pinia-shared-state
   - proxy-agent
   - typescript
   - undici

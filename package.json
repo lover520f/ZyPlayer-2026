@@ -203,7 +203,7 @@
     "pako": "^2.1.0",
     "pinia": "^3.0.4",
     "pinia-plugin-persistedstate": "^4.7.1",
-    "pinia-shared-state": "^2.0.1",
+    "pinia-shared-state": "^1.0.0",
     "postcss-html": "^1.8.1",
     "postcss-less": "^6.0.0",
     "prettier": "^3.8.1",

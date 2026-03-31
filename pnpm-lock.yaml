@@ -482,8 +482,8 @@ importers:
         specifier: ^4.7.1
         version: 4.7.1(pinia@3.0.4(typescript@5.8.3)(vue@3.5.31(typescript@5.8.3)))
       pinia-shared-state:
-        specifier: ^2.0.1
-        version: 2.0.1(pinia@3.0.4(typescript@5.8.3)(vue@3.5.31(typescript@5.8.3)))
+        specifier: ^1.0.0
+        version: 1.0.1(pinia@3.0.4(typescript@5.8.3)(vue@3.5.31(typescript@5.8.3)))
       postcss-html:
         specifier: ^1.8.1
         version: 1.8.1
@@ -2740,12 +2740,6 @@ packages:
     peerDependencies:
       typescript: '>=4.8.4 <6.0.0'
 
-  '@typescript-eslint/tsconfig-utils@8.57.2':
-    resolution: {integrity: sha512-3Lm5DSM+DCowsUOJC+YqHHnKEfFh5CoGkj5Z31NQSNF4l5wdOwqGn99wmwN/LImhfY3KJnmordBq/4+VDe2eKw==}
-    engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
-    peerDependencies:
-      typescript: '>=4.8.4 <6.0.0'
-
   '@typescript-eslint/tsconfig-utils@8.58.0':
     resolution: {integrity: sha512-doNSZEVJsWEu4htiVC+PR6NpM+pa+a4ClH9INRWOWCUzMst/VA9c4gXq92F8GUD1rwhNvRLkgjfYtFXegXQF7A==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
@@ -2772,10 +2766,6 @@ packages:
 
   '@typescript-eslint/types@8.57.0':
     resolution: {integrity: sha512-dTLI8PEXhjUC7B9Kre+u0XznO696BhXcTlOn0/6kf1fHaQW8+VjJAVHJ3eTI14ZapTxdkOmc80HblPQLaEeJdg==}
-    engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
-
-  '@typescript-eslint/types@8.57.2':
-    resolution: {integrity: sha512-/iZM6FnM4tnx9csuTxspMW4BOSegshwX5oBDznJ7S4WggL7Vczz5d2W11ecc4vRrQMQHXRSxzrCsyG5EsPPTbA==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
 
   '@typescript-eslint/types@8.58.0':
@@ -7703,8 +7693,8 @@ packages:
       pinia:
         optional: true
 
-  pinia-shared-state@2.0.1:
-    resolution: {integrity: sha512-4Eq3aIPEzfXqFTiiJp+Kad3NfyHnqB58eKlbchE99vW0LXQKQEMio6M0weY2xzoSgYHrO46sfEliHw4mTVfOow==}
+  pinia-shared-state@1.0.1:
+    resolution: {integrity: sha512-S7JGPsXuV5+cp+juoVaoszdH5fEFVtagQkw4X8ivNITSN+57axloXfdECcigWq1OOWoVOjdmdanuJS8xJc+VAg==}
     peerDependencies:
       pinia: ^3.0.0
 
@@ -12061,8 +12051,8 @@ snapshots:
 
   '@typescript-eslint/project-service@8.56.1(typescript@5.8.3)':
     dependencies:
-      '@typescript-eslint/tsconfig-utils': 8.57.2(typescript@5.8.3)
-      '@typescript-eslint/types': 8.57.2
+      '@typescript-eslint/tsconfig-utils': 8.58.0(typescript@5.8.3)
+      '@typescript-eslint/types': 8.58.0
       debug: 4.4.3
       typescript: 5.8.3
     transitivePeerDependencies:
@@ -12123,10 +12113,6 @@ snapshots:
     dependencies:
       typescript: 5.8.3
 
-  '@typescript-eslint/tsconfig-utils@8.57.2(typescript@5.8.3)':
-    dependencies:
-      typescript: 5.8.3
-
   '@typescript-eslint/tsconfig-utils@8.58.0(typescript@5.8.3)':
     dependencies:
       typescript: 5.8.3
@@ -12159,8 +12145,6 @@ snapshots:
 
   '@typescript-eslint/types@8.57.0': {}
 
-  '@typescript-eslint/types@8.57.2': {}
-
   '@typescript-eslint/types@8.58.0': {}
 
   '@typescript-eslint/typescript-estree@8.56.1(typescript@5.8.3)':
@@ -12173,7 +12157,7 @@ snapshots:
       minimatch: 10.2.2
       semver: 7.7.4
       tinyglobby: 0.2.15
-      ts-api-utils: 2.4.0(typescript@5.8.3)
+      ts-api-utils: 2.5.0(typescript@5.8.3)
       typescript: 5.8.3
     transitivePeerDependencies:
       - supports-color
@@ -17936,7 +17920,7 @@ snapshots:
     optionalDependencies:
       pinia: 3.0.4(typescript@5.8.3)(vue@3.5.31(typescript@5.8.3))
 
-  pinia-shared-state@2.0.1(pinia@3.0.4(typescript@5.8.3)(vue@3.5.31(typescript@5.8.3))):
+  pinia-shared-state@1.0.1(pinia@3.0.4(typescript@5.8.3)(vue@3.5.31(typescript@5.8.3))):
     dependencies:
       broadcast-channel: 7.3.0
       pinia: 3.0.4(typescript@5.8.3)(vue@3.5.31(typescript@5.8.3))
