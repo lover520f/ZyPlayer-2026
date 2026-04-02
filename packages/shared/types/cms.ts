@@ -142,7 +142,7 @@ export interface ICmsSearch {
 
 export interface ICmsPlay {
   url: string | Array<string>;
-  quality?: Array<string>;
+  quality?: Array<{ name: string; url: string }>;
   jx?: number;
   parse?: number;
   headers?: Record<string, any>;

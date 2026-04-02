@@ -254,11 +254,6 @@ const api: FastifyPluginAsync = async (fastify): Promise<void> => {
       const adapter = await prepare(uuid);
       const resp = await adapter.play({ flag, play });
 
-      if (isArray(resp?.url) && !isArrayEmpty(resp.url)) {
-        if (!isArray(resp?.quality) || isArrayEmpty(resp.quality)) resp.quality = resp.url as unknown as string[];
-        resp.url = resp.url?.[1];
-      }
-
       const res = {
         url: isString(resp?.url) && !isStrEmpty(resp.url) ? resp.url : '',
         quality: isArray(resp?.quality) && !isArrayEmpty(resp.quality) ? resp.quality : [],

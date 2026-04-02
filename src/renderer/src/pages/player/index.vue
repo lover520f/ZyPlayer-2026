@@ -37,6 +37,7 @@
 import { APP_NAME } from '@shared/config/appinfo';
 import { SYSTEM_M3U8_AD_REMOVE_API } from '@shared/config/env';
 import { IPC_CHANNEL } from '@shared/config/ipcChannel';
+import { isArray, isArrayEmpty } from '@shared/modules/validate';
 import type { IBarrageResult } from '@shared/types/barrage';
 import { merge } from 'es-toolkit';
 import { ChevronLeftIcon, ChevronRightIcon } from 'tdesign-icons-vue-next';
@@ -155,10 +156,10 @@ const handlePlayerCreate = async (
     const finalItem: IMultiPlayerOptions = {
       ...item,
       url: handleUrlAdRemove(item.url, item.skipAd),
-      quality: (item.quality || []).reduce<Array<{ name: string; url: string }>>((acc, cur, i, arr) => {
-        if (i % 2 === 0 && arr[i + 1]) acc.push({ name: handleUrlAdRemove(cur, item.skipAd), url: arr[i + 1] });
-        return acc;
-      }, []),
+      quality:
+        isArray(item.quality) && !isArrayEmpty(item.quality)
+          ? item.quality.map((q) => ({ name: q.name, url: handleUrlAdRemove(q.url, item.skipAd) }))
+          : [],
     };
     playerFormData.value = merge(playerFormData.value, finalItem);
     await playerRef.value?.create(playerFormData.value, player.type, mode);
