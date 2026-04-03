@@ -266,7 +266,7 @@ sudo yum install xdg-utils
       "lang": "zh_CN", // <3.3.4 启用> 语言(<=3.4.0: zh_CN=简体中文,en_US=英文 | system=更随系统,zh_CN=简体中文,zh_TW=繁体中文,en_US=英文)
       "zoom": 1, // <3.4.1 启用> 界面缩放比例(预留)
       "proxy": {
-        "type": "none", // 代理类型(system=系统代理,custom=自定义代理,direct=直连)
+        "type": "system", // 代理类型(system=系统代理,custom=自定义代理,direct=直连)
         "url": "", // 代理地址(支持socks5/http/https协议)
         "bypass": "" // 忽略主机名
       }, <3.4.1 启用> 代理设置
