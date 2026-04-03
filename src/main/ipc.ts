@@ -353,8 +353,8 @@ export function registerIpc(mainWindow: BrowserWindow, app: Electron.App) {
       if (isPositiveFiniteNumber(mode)) {
         if (mode === 1) {
           webview.setWindowOpenHandler(({ url }) => {
-            const win = BrowserWindow.fromWebContents(event.sender)!;
-            win.webContents.send(IPC_CHANNEL.WEBVIEW_LINK_BLOCK_RELAY, url);
+            const mainWindow = BrowserWindow.fromWebContents(event.sender)!;
+            mainWindow.webContents.send(IPC_CHANNEL.WEBVIEW_LINK_BLOCK_RELAY, url);
             return { action: 'deny' };
           });
         } else if (mode === 2) {
@@ -371,8 +371,6 @@ export function registerIpc(mainWindow: BrowserWindow, app: Electron.App) {
     (_, webviewId: number, rawUrl: string, headers?: Record<string, any>) => {
       const webview = webContents.fromId(webviewId);
       if (!webview) return;
-
-      if (!isObject(headers) || isObjectEmpty(headers)) return;
 
       const isSameDomain = (source: string, raw: string) => {
         try {
@@ -396,6 +394,8 @@ export function registerIpc(mainWindow: BrowserWindow, app: Electron.App) {
         requestHeaders['Accept-Language'] = `${language}, en;q=0.9, *;q=0.5`;
 
         if (!isSameDomain(url, rawUrl)) return callback({ requestHeaders });
+
+        if (!isObject(headers) || isObjectEmpty(headers)) return callback({ requestHeaders });
 
         for (const key in headers) {
           requestHeaders[key] = headers[key];
@@ -540,15 +540,15 @@ export function registerIpc(mainWindow: BrowserWindow, app: Electron.App) {
     (_event: Electron.IpcMainInvokeEvent, url: string, headers?: Record<string, any>) => {
       if (!isExternal(url)) return;
 
-      let window = windowService.getWindow(WINDOW_NAME.BROWSER);
-      if (window && !window.isDestroyed()) {
-        windowService.showWindow(window);
-        window.webContents.send(IPC_CHANNEL.BROWSER_NAVIGATE, url, headers);
+      let mainWindow = windowService.getWindow(WINDOW_NAME.BROWSER);
+      if (mainWindow && !mainWindow.isDestroyed()) {
+        windowService.showWindow(mainWindow);
+        mainWindow.webContents.send(IPC_CHANNEL.BROWSER_NAVIGATE, url, headers);
       } else {
-        window = windowService.createBrowserWindow();
-        window.webContents.once('did-stop-loading', () => {
+        mainWindow = windowService.createBrowserWindow();
+        mainWindow.webContents.once('did-stop-loading', () => {
           setTimeout(() => {
-            window!.webContents.send(IPC_CHANNEL.BROWSER_NAVIGATE, url, headers);
+            mainWindow!.webContents.send(IPC_CHANNEL.BROWSER_NAVIGATE, url, headers);
           }, 1000);
         });
       }
